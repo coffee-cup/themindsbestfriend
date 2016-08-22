@@ -1,0 +1,22 @@
+.main
+     .logo.mx-auto.mt4
+          %a{href: "/"}
+               %img.fit{alt: "the minds best friend", src: "#{image_path("logo.svg")}"}
+          / %h2.center themindsbestfriend
+          %h5.hphone-required
+               headphones required
+
+     %ng-view
+
+     .main__archive.ng-cloak.animatedLong.fadeIn
+          %div.mixtapes-heading
+               mixtapes
+          %ul.main__archive-grid{"ng-controller" => "MixListCtrl"}
+               %li.currentMix.mix{"ng-repeat" => "mix in Mix.Mixes.array"}
+                    %div{"ng-click" => "ChangeMixtape(mix)", "ng-class" => "{'mixtapes': true, 'playing': mix.id === Mix.PlayingMixID}"}
+                         %img.lazy.animated.fadeIn{:alt => "{{mix.title}}", "data-original" => "{{mix.artwork_url}}?h=250&w=250", :height => "250", :src => "/img/grey.jpg", :width => "250"}
+                         %span.mix-title {{mix.title}}
+
+= partial 'partials/footer-player'
+= partial 'partials/footer'
+
